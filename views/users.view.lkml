@@ -25,6 +25,14 @@ view: users {
 
     sql: (length(${full_name}) );;
   }
+
+  dimension: age_tier {
+    type: tier
+    tiers: [9, 19, 29, 39, 49, 59, 69, 79, 89,99]
+    style: interval # the default value, could be excluded
+    sql: ${age} ;;
+  }
+
   dimension: age {
     type: number
     sql: ${TABLE}.age ;;
