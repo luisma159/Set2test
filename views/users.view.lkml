@@ -20,6 +20,11 @@ view: users {
     type: string
     sql: (concat(${TABLE}.first_name, ' ', ${TABLE}.last_name)) ;;
   }
+  dimension: zise {
+    type: number
+
+    sql: (length(${full_name}) );;
+  }
   dimension: age {
     type: number
     sql: ${TABLE}.age ;;
