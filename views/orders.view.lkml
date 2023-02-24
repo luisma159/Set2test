@@ -50,6 +50,22 @@ view: orders {
     drill_fields: [detail*]
   }
 
+
+
+  measure: count_organic_users {
+    type: count_distinct
+    sql:  ${user_id} ;;
+    drill_fields: [id, users.id, users.first_name, users.last_name, order_items.count]
+
+  }
+  measure: percent_organic_users {
+    type: number
+    sql: ${count_organic_users}/${count} ;;
+    value_format_name: percent_2
+  }
+
+
+
   # ----- Sets of fields for drilling ------
   set: detail {
     fields: [
