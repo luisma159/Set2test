@@ -86,4 +86,22 @@ view: order_items {
     type: count
     drill_fields: [id, orders.id, inventory_items.id]
   }
+
+  measure: revenue {
+    type: number
+
+    sql: ${TABLE}.sale_price * ${TABLE}.order_id;;
+  }
+
+  measure: price_comparison {
+    type: number
+    value_format: "0"
+    html:
+    {% if revenue._value > total_sale_price._value %}
+    <span style="color:#d4d4d4; background-color: #78b4a6;">{{ rendered_value }}</span>
+    {% else %}
+    <span style="color:#d4d4d4; background-color: #eb605d;">{{ rendered_value }}</span>
+    {% endif %} ;;
+  }
+
 }
