@@ -123,14 +123,7 @@ explore: orders {
   join: users {
     type: left_outer
     sql_on: ${orders.user_id} = ${users.id} ;;
-    sql_where:CASE
-    WHEN ${orders.created_at } > ${users.created_date}
 
-THEN ${orders.status} = "Yes"
-
-ELSE ${orders.status} = "No"
-
-END ;;
     relationship: many_to_one
   }
 }
